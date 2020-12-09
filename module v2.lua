@@ -13,6 +13,7 @@ rayParams.FilterType = Enum.RaycastFilterType.Blacklist
  
 local newVector = Vector3.new
 local emptyVector = newVector()
+local attachmentName = "DmgPoint"
  
 function hitbox:Cast(callback, filter)
     local index = #active + 1
@@ -92,7 +93,7 @@ return function(part)
     local attachments = {}
  
     for _, attachment in ipairs(part:GetChildren()) do
-        if attachment:IsA("Attachment") then
+        if attachment:IsA("Attachment") and attachment.Name == attachmentName then
             table.insert(attachments, attachment)
         end
     end
