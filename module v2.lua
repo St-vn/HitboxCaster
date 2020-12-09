@@ -22,7 +22,7 @@ function hitbox:Cast(callback, filter)
     for _, attachment in ipairs(self.Attachments) do
         table.insert(attachPos, attachment.WorldPosition)
     end
- 
+ 			
     self.Callback = callback
     self.Filter = filter or {}
     self.Position = self.Part.Position
@@ -79,6 +79,7 @@ game:GetService("RunService").Heartbeat:Connect(function() -- it is better to ha
                     local humanoid = model and model:FindFirstChildWhichIsA("Humanoid")
                     
                     if humanoid then
+						table.insert(self.Filter, model)
                         self.Callback(part, model, humanoid) -- if your callback yields, then it would be a good idea to wrap it
                     end
                 end
