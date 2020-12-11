@@ -11,8 +11,7 @@ hitbox.__index = hitbox
 local rayParams = RaycastParams.new()
 rayParams.FilterType = Enum.RaycastFilterType.Blacklist
  
-local newVector = Vector3.new
-local emptyVector = newVector()
+local emptyVector = Vector3.new()
 local attachmentName = "DmgPoint"
  
 function hitbox:Cast(callback, filter)
