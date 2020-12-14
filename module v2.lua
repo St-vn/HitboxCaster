@@ -15,7 +15,6 @@ local emptyVector = Vector3.new()
 local attachmentName = "DmgPoint"
  
 function hitbox:Cast(callback, filter)
-    local index = #active + 1
     local attachPos = {}
  
     for _, attachment in ipairs(self.Attachments) do
@@ -26,9 +25,9 @@ function hitbox:Cast(callback, filter)
     self.Filter = filter or {}
     self.Position = self.Part.Position
     self.AttachPos = attachPos
-    self.Index = index
+    self.Index = #active + 1
     
-    table.insert(active, index, self)
+    table.insert(active, self)
     table.insert(self.Filter, self.Part)
 end
  
