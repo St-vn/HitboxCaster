@@ -32,12 +32,6 @@ function hitbox:Cast(callback, filter)
 end
  
 function hitbox:Stop()
-    local filter = self.Filter
-    
-    for _ = 1, #filter do
-        table.remove(filter)
-    end
-    
     table.remove(active, self.Index)
     
     self.Callback = nil
@@ -52,10 +46,8 @@ function hitbox:Remove()
     self.Part = nil
  
     self:Stop()
- 
-    for _ = 1, #attachments do
-        table.remove(attachments)
-    end
+
+  self.Attachments = nil
 end
  
 game:GetService("RunService").Heartbeat:Connect(function() -- it is better to handle connections procedurally and to use only 1 connection
