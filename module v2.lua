@@ -47,7 +47,7 @@ function hitbox:Remove()
  
     self:Stop()
 
-  self.Attachments = nil
+    self.Attachments = nil
 end
  
 game:GetService("RunService").Heartbeat:Connect(function() -- it is better to handle connections procedurally and to use only 1 connection
