@@ -42,11 +42,9 @@ function hitbox:Stop()
 end
  
 function hitbox:Remove()
-    local attachments = self.Attachments
-    self.Part = nil
- 
     self:Stop()
 
+    self.Part = nil
     self.Attachments = nil
 end
  
