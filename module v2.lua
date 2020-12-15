@@ -28,7 +28,7 @@ function hitbox:Cast(callback, filter)
     self.Index = #active + 1
     
     table.insert(active, self)
-    table.insert(self.Filter, self.Part)
+    table.insert(filter, self.Part)
 end
  
 function hitbox:Stop()
