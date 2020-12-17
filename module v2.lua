@@ -60,11 +60,10 @@ game:GetService("RunService").Heartbeat:Connect(function() -- it is better to ha
 			if results and not hit[part] then
 				local part = results.Instance -- you could for part detection only, pretty simple to do
 				local model = part:FindFirstAncestorWhichIsA("Model")
-				local humanoid = model and model:FindFirstChildWhichIsA("Humanoid")
 				
-				if humanoid then
+				if model:FindFirstChildWhichIsA("Humanoid") then
 					hit[part] = true
-					callback(part, model, humanoid) -- if your callback yields, then it would be a good idea to wrap it
+					callback(part, model) -- if your callback yields, then it would be a good idea to wrap it
 				end
 			end
 
