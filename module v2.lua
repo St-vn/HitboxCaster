@@ -13,23 +13,19 @@ local rayParams = RaycastParams.new()
 rayParams.FilterType = Enum.RaycastFilterType.Blacklist
 
 local emptyVector = Vector3.new()
-local attachmentName = "DmgPoint"
 
 function hitbox:Cast(callback, filter)
-	local attachPos = {}
-
-	for _, attachment in ipairs(self.Attachments) do
-		table.insert(attachPos, attachment.WorldPosition)
-	end
-
 	self.Callback = callback
 	self.Filter = filter or {}
-	self.Position = self.Part.Position
-	self.AttachPos = attachPos
 	self.Index = #active + 1
-
+	self.Hit = {}
+	
+	for _, info in ipairs(self.Attachments) do
+		info.Previous = info.Attachment.WorldPosition
+	end
+	
 	table.insert(active, self)
-	table.insert(self.filter, self.Part)
+	table.insert(self.Filter, self.Part)
 end
 
 function hitbox:Stop()
@@ -37,9 +33,8 @@ function hitbox:Stop()
 
 	self.Callback = nil
 	self.Filter = nil
-	self.Position = nil
-	self.AttachPos = nil
 	self.Index = nil
+	self.Hit = nil
 end
 
 function hitbox:Remove()
@@ -51,30 +46,29 @@ end
 
 game:GetService("RunService").Heartbeat:Connect(function() -- it is better to handle connections procedurally and to use only 1 connection
 	for _, self in ipairs(active) do
-		local attachPos = self.AttachPos
+		local hit = self.Hit
+		local callback = self.Callback
 
 		rayParams.FilterDescendantsInstances = self.Filter
-
-		for index, attachment in ipairs(self.Attachments) do
-			local new = attachment.WorldPosition
-			local old = attachPos[index]
-
-			if new - old ~= emptyVector then
-				local results = workspace:Raycast(old, new - old, rayParams)
-
-				if results then
-					local part = results.Instance -- you could for part detection only, pretty simple to do
-					local model = results.Instance:FindFirstAncestorWhichIsA("Model")
-					local humanoid = model and model:FindFirstChildWhichIsA("Humanoid")
-
-					if humanoid then
-						table.insert(self.Filter, model)
-						self.Callback(part, model, humanoid) -- if your callback yields, then it would be a good idea to wrap it
-					end
+		
+		for index, info in ipairs(self.Attachments) do
+			local new = info.Attachment.WorldPosition
+			local old = info.Previous
+			
+			local results = workspace:Raycast(old, new - old, rayParams)
+			
+			if results and not hit[part] then
+				local part = results.Instance -- you could for part detection only, pretty simple to do
+				local model = part:FindFirstAncestorWhichIsA("Model")
+				local humanoid = model and model:FindFirstChildWhichIsA("Humanoid")
+				
+				if humanoid then
+					hit[part] = true
+					callback(part, model, humanoid) -- if your callback yields, then it would be a good idea to wrap it
 				end
 			end
 
-			attachPos[index] = new
+			info.Previous = new
 		end
 	end
 end)
@@ -83,8 +77,11 @@ return function(part)
 	local attachments = {}
 
 	for _, attachment in ipairs(part:GetChildren()) do
-		if attachment:IsA("Attachment") and attachment.Name == attachmentName then
-			table.insert(attachments, attachment)
+		if attachment:IsA("Attachment") and attachment.Name == "DmgPoint" then
+			table.insert(attachments, {
+				Attachment = attachment,
+				Previous = nil
+			})
 		end
 	end
 
