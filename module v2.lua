@@ -18,11 +18,11 @@ function hitbox:Cast(callback, filter)
 	self.Callback = callback
 	self.Index = #active + 1
 	self.Hit = {}
-	
+
 	for _, info in ipairs(self.Attachments) do
 		info.Previous = info.Attachment.WorldPosition
 	end
-	
+
 	table.insert(active, self)
 	table.insert(self.Filter, self.Part)
 end
@@ -40,32 +40,34 @@ function hitbox:Remove()
 	self:Stop()
 
 	for key, value in pairs(self) do
-    	self[key] = nil
-    end
+		self[key] = nil
+	end
 end
 
 game:GetService("RunService").Stepped:Connect(function() -- it is better to handle connections procedurally and to use only 1 connection
 	for _, self in ipairs(active) do
 		rayParams.FilterDescendantsInstances = self.Filter
+
+		local handleCFrame = self.Part.CFrame
 		local hit = self.Hit
 
 		for index, info in ipairs(self.Attachments) do
-			local new = info.Attachment.WorldPosition
 			local old = info.Previous
-			
+			local new = info.Attachment.WorldPosition
 			local results = workspace:Raycast(old, new - old, rayParams)
-			
+
+			info.Previous = new
+
 			if results and not hit[part] then
 				local part = results.Instance -- you could for part detection only, pretty simple to do
 				local model = part:FindFirstAncestorWhichIsA("Model")
-				
+
 				if model:FindFirstChildWhichIsA("Humanoid") then
 					hit[part] = true
+
 					self.Callback(part, model) -- if your callback yields, then it would be a good idea to wrap it 
 				end
 			end
-
-			info.Previous = new
 		end
 	end
 end)
@@ -75,7 +77,7 @@ return function(part)
 
 	for _, attachment in ipairs(part:GetChildren()) do
 		if attachment.ClassName == "Attachment" and attachment.Name == "DmgPoint" then
-			table.insert(attachments, attachment)
+			table.insert(attachments, {Attachment = attachment})
 		end
 	end
 
