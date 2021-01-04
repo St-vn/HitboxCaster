@@ -4,6 +4,8 @@
 -- Roblox : St_vnC, https://www.roblox.com/users/332398911/profile
 -- Discord : St_vn#3931
 
+-- 2.3
+
 local active, hitbox = {}, {}
 hitbox.__index = hitbox
 
