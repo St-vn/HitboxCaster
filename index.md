@@ -34,6 +34,6 @@ I've decided to make this module to be a **shorter version of Swordphin's Raycas
 **I don't plan** to open source any other kind of hitbox modules due to the reason of them being **tailored for my game(s)** only. It will likely be a better idea to make a **projectile module** of your own made for your game instead of using **general use ones**. For **splash effect and AOE** based hitboxes, I would suggest iterating through **candidates** that could potentially get hit and **compare the distance**, in other words a **linear search algorithm**. It is a better idea to loop through those who are **within a certain vicinity** by using **chunks** and such stuff to use **less resources**.
 
 
-[HitboxCaster API](https://github.com/St-vn/HitboxCaster/)
+[HitboxCaster API](https://github.com/St-vn/HitboxCaster/blob/main/API.lua)
 
-[HitboxCaster src code](https://github.com/St-vn/HitboxCaster/)
+[HitboxCaster src code](https://github.com/St-vn/HitboxCaster/blob/main/recent%20version.lua)
