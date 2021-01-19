@@ -24,6 +24,15 @@ The deconstructor function is a function inherited from the hitbox class. It wil
 **For more info on how things are done, I suggest you take a look at the source code yourself and the API as well.**
 
 
+## Benchmark
+
+[Accuracy](https://cdn.discordapp.com/attachments/781886987366957058/796580298301243422/Screen_Recording_2021-01-06_at_10.25.14_PM.mov)
+
+[Performance](https://cdn.discordapp.com/attachments/781886987366957058/796581913564282920/Screen_Recording_2021-01-06_at_10.31.54_PM.mov)
+
+**This should be more performant except I'm recording on a lower-end device.**
+
+
 ## Additional info
 
 I've decided to make this module to be a **shorter version of Swordphin's Raycast Hitbox**. My first attempt was a **disaster** and I've learned from that which got me to where I currently am with this module. A lot of features were **inspired** from their module but were made into a much more **compact singular module**.
