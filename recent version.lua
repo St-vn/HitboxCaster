@@ -47,7 +47,7 @@ function hitbox:Remove()
 	end
 end
 
-game:GetService("RunService").Stepped:Connect(function() -- it is better to handle connections procedurally and to use only 1 connection
+game:GetService("RunService").Heartbeat:Connect(function() -- it is better to handle connections procedurally and to use only 1 connection
 	for index, self in ipairs(active) do
 		if not self.Callback then table.remove(active, index); continue end
 		
