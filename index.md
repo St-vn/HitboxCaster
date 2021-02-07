@@ -4,7 +4,7 @@
 ### Version 2.4, 2/1/2021
 
 
-HitboxCaster is an **open sourced raycast based hitbox module** that is **simple to use** and is **performance friendly** meant to be **used for melee hitboxes**. First of all, I decided to use raycast because it is the lightest hitbox method, even though you could cast a lot of rays every second, it would still be more performant `BasePart`'s Touched event. Region3's problem is that it requires you to check every part in a **large 3D box** so **Region3 would be more effective for explosive or AOE based hitboxes**.
+HitboxCaster is an **open sourced raycast based hitbox module**, it is **simplistic**, **minimalistic** and is **well optimized**. It is meant to be **used for melee hitboxes**. First of all, I decided to use raycast because it is the lightest hitbox method, even though you could cast a lot of rays every second, it would **still be more performant** `BasePart`'s Touched event. Region3's problem is that it requires you to check every part in a **large 3D box** so **Region3 would be more effective for explosive or AOE based hitboxes**.
 
 The reason being is that **Raycast's intersection** math is less **heavy** than Touched's **collision detection math**. The methods that I used to make my module could potentially be alien to those who will use it but they still remain simple and effective. The only **functions** you need to know are the **constructor functions, the casting ones and the deconstructor.**
 
@@ -26,23 +26,29 @@ The deconstructor function is a function inherited from the hitbox class. It wil
 
 ## Benchmark
 
-[Accuracy](https://cdn.discordapp.com/attachments/781886987366957058/796580298301243422/Screen_Recording_2021-01-06_at_10.25.14_PM.mov)
+Performance benchmarks :
 
-[Performance](https://cdn.discordapp.com/attachments/781886987366957058/796581913564282920/Screen_Recording_2021-01-06_at_10.31.54_PM.mov)
+[1](https://streamable.com/j4bluu)
+[2](https://streamable.com/ihz5ls)
 
-**This should be more performant except I'm recording on a lower-end device.**
+Accuracy benchmarks :
 
+[1](https://streamable.com/s53uu7)
+[2](https://streamable.com/x079tf)
+
+
+[Get the place file here](https://cdn.discordapp.com/attachments/782775081277325322/808046890540859432/HitboxCaster_benchmark.rbxl)
 
 ## Additional info
 
-I've decided to make this module to be a **shorter version of Swordphin's Raycast Hitbox**. My first attempt was a **disaster** and I've learned from that which got me to where I currently am with this module. A lot of features were **inspired** from their module but were made into a much more **compact singular module**.
+I've decided to make this module a **shorter version of Swordphin's Raycast Hitbox**. My first attempt was a **disaster** and I've learned from that which got me to where I currently am with this module. A lot of features were **inspired** from their module but were made into a much more **compact singular module**.
 
 
 ## Other kinds of hitboxes
 
-**I don't plan** to open source any other kind of hitbox modules due to the reason of them being **tailored for my game(s)** only. It will likely be a better idea to make a **projectile module** of your own made for your game instead of using **general use ones**. For **splash effect and AOE** based hitboxes, I would suggest iterating through **candidates** that could potentially get hit and **compare the distance**, in other words a **linear search algorithm**. It is a better idea to loop through those who are **within a certain vicinity** by using **chunks** and such stuff to use **less resources**.
+**I don't plan** to open source any other kind of hitbox modules due to the reason of them being **tailored for my game(s)** only. It will likely be a better idea to make a **projectile module** of your own made for your game instead of using **general use ones**. For **splash effect and AOE** based hitboxes, I would suggest iterating through **candidates** and **compare their distances between the hitbox's origin**. It is a better idea to loop through those who are **within a certain vicinity** by using **chunks** and such stuff to use **less resources**.
 
 
 [HitboxCaster API](https://github.com/St-vn/HitboxCaster/blob/main/API.lua)
 
-[HitboxCaster src code](https://github.com/St-vn/HitboxCaster/blob/main/recent%20version.lua)
+[HitboxCaster src code](https://github.com/St-vn/HitboxCaster/blob/main/latest%20version.lua)
