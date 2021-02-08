@@ -6,12 +6,12 @@
 
 HitboxCaster is an **open sourced raycast based hitbox module**, it is **simplistic**, **minimalistic** and is **well optimized**. It is meant to be **used for melee hitboxes**. First of all, I decided to use raycast because it is the lightest hitbox method, even though you could cast a lot of rays every second, it would **still be more performant** `BasePart`'s Touched event. Region3's problem is that it requires you to check every part in a **large 3D box** so **Region3 would be more effective for explosive or AOE based hitboxes**.
 
-The reason being is that **Raycast's intersection** math is less **heavy** than Touched's **collision detection math**. The methods that I used to make my module could potentially be alien to those who will use it but they still remain simple and effective. The only **functions** you need to know are the **constructor functions, the casting ones and the deconstructor.**
+The reason being is that **Raycast's intersection** math is less **heavy** than Touched's **collision detection math**. The methods that I used to make my module could potentially be alien to those who will use it but they still remain simple and effective. The only **functions** you need to know to operate the module are the **constructor function, the ones relevant to casting the rays and the deconstructor.**
 
 
 ## How things are done
 
-The constructor function requires the part that would have attachments in it, you could alternatively feed an array of offset vectors if you don't like to use attachments. It would internally loop through the given part's **children** and add the qualified(having the correct name) attachments' `Position` property in an array the similarly to the alternate way. Then it will create an object that inherits the `Hitbox` class methods.
+The constructor function requires the part that would have attachments in it, you could alternatively feed an array of offset vectors if you don't like to use attachments. It would internally loop through the given part's **children** and **add the qualified**(having the correct name) attachments' **`Position` property** in an array the similarly to the alternate way. Then it will create an object that inherits the `Hitbox` class methods.
 
 One of the methods that the `Hitbox` has is to start casting rays with a **given callback and filter**. The callback would be the function that would get called when the hitbox hits a target. The filter is used to **blacklist unwanted groups of parts** and would create one internally if not specified. The filter **automatically adds** the `Part` to the filter list so ther wont be any need to add it. After all of that is done, it will **append the hitbox object** in an array of "active" hitboxes.
 
