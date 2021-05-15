@@ -1,10 +1,10 @@
 -- Creation date : 7/12/2020
--- Latest Update : 1/2/2021, more optimizations
+-- Latest Update : 13/04/2021, made it not OOP
 -- GitHub : St-vn, https://github.com/St-vn
 -- Roblox : St_vnC, https://www.roblox.com/users/332398911/profile
 -- Discord : St_vn#3931
 
--- Version 2.4
+-- Version 3.0
 
 local active, hitbox = {}, {}
 hitbox.__index = hitbox
